@@ -52,7 +52,7 @@ Linux is installed but not yet configured. Let's do so.
 ### Fstab
 Generate an `fstab` file `genfstab -U /mnt >> /mnt/etc/fstab`
 
-Here the `fstab` file is used to define how disk partitions, various other block devices, or remote filesystems should be mounted into the filesystem. It's needed because before we did it manually, and now we have to make it during the boot, automatically.
+Here the `fstab` file is used to define how disk partitions, various other block devices, or remote filesystems should be mounted into the filesystem. It's needed because before we did it manually, and now we have to make it during the boot automatically.
 
 ### Chroot
 `arch-chroot /mnt`
