@@ -13,7 +13,10 @@ Verify by `ping google.com`
 ## Update the system clock
 This is important step because clock setup will be referenced in the future during our progress. 
 `timedatectl set-timezone <your_timezone_country/your_timezone_city>`
-Validate `timedatectl status` 
+
+[`timedatectl`](https://jlk.fjfi.cvut.cz/arch/manpages/man/timedatectl.1) may be used to query and change the system clock and its settings, and enable or disable time synchronization services.
+
+Validate by `timedatectl status` 
 
 
 ## Partitioning and formatting 
@@ -60,5 +63,30 @@ Here the `fstab` file is used to define how disk partitions, various other block
 A chroot is an operation that changes the apparent root directory for the current running process and their children. A program that is run in such a modified environment cannot access files and commands outside that environmental directory tree. This modified environment is called a chroot jail. More on this [here](https://wiki.archlinux.org/index.php/Chroot) 
 
 From now on we are inside our of newly created linux OS already to progress with our configuration. 
+
+### Set the time zone
+
+`ln -sf /usr/share/zoneinfo/Region/City /etc/localtime`
+
+The `ln` command is a standard Unix command utility used to create a hard link or a symbolic link (symlink) to an existing file. 
+
+A hard link allows multiple filenames to be associated with the same file since a hard link points to the inode of a given file, the data of which is stored on disk. 
+
+A symbolic link refers to a symbolic path indicating the location of the source file. You can see it as a link to a path (itself refering to an inode). A symbolic link is less limited. It can refer to a directory and can cross file system boundaries. That's our case here.
+
+`-f`, `--force` remove existing destination files.
+
+#### Run hwclock to generate /etc/adjtime:
+
+`hwclock --systohc`
+
+`hwclock` is an administration tool for the time clocks. It can: display the Hardware Clock time; set the Hardware Clock to a specified time; set the Hardware Clock from the System Clock; set the System Clock from the Hardware Clock; compensate for Hardware Clock drift; correct the System Clock timescale; set the kernel's timezone, NTP timescale, and epoch (Alpha only); and predict future Hardware Clock values based on its drift rate.
+
+This command assumes the hardware clock is set to UTC. You can check it by `hwclock` and see that the time is different from the actual time. In our case the "right" time is local time. More info is [here](https://wiki.archlinux.org/index.php/System_time#Time_standard) Let's make it "right".
+
+`timedatectl set-local-rtc 1`
+
+
+
 
 
