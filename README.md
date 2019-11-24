@@ -86,6 +86,19 @@ This command assumes the hardware clock is set to UTC. You can check it by `hwcl
 
 `timedatectl set-local-rtc 1`
 
+### Localization
+Read more about localization [here](https://wiki.archlinux.org/index.php/Installation_guide#Localization)
+
+### Network configuration
+Read more [here](https://wiki.archlinux.org/index.php/Installation_guide#Network_configuration)
+
+### Password
+`passwd`
+
+### Boot loader
+Now `exit` and install `pacstrap /mnt grub efibootmgr`
+(explain here what it's and why)
+
 
 
 
