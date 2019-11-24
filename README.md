@@ -101,6 +101,11 @@ Now `exit` and install `pacstrap /mnt grub efibootmgr`
 Login again `arch-chroot /mnt`
 and `grub-install --target=x86_64-efi --efi-directory=esp --bootloader-id=GRUB`
 
+[Generate_the_main_configuration_file](https://wiki.archlinux.org/index.php/GRUB#Generate_the_main_configuration_file)
+
+(explain here what it's and why)
+
+`exit`, `reboot`
 (explain here what it's and why)
 
 
