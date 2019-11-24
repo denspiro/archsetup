@@ -10,6 +10,12 @@ Run `wifi-menu`.
 We are using [netctl](https://wiki.archlinux.org/index.php/Netctl) here. It is a CLI and profile-based network manager and an Arch project. 
 Verify by `ping google.com`
 
+## Update the system clock
+This is important step because clock setup will be referenced in the future during our progress. 
+`timedatectl set-timezone <your_timezone_country/your_timezone_city>`
+Validate `timedatectl status` 
+
+
 ## Partitioning and formatting 
 The process of dividing a disk into logical areas that can be worked with separately is called partitioning. Disk partitioning is done to subdivide the disk into pieces with broadly different purposes. 
 
@@ -52,3 +58,7 @@ Here the `fstab` file is used to define how disk partitions, various other block
 `arch-chroot /mnt`
 
 A chroot is an operation that changes the apparent root directory for the current running process and their children. A program that is run in such a modified environment cannot access files and commands outside that environmental directory tree. This modified environment is called a chroot jail. More on this [here](https://wiki.archlinux.org/index.php/Chroot) 
+
+From now on we are inside our of newly created linux OS already to progress with our configuration. 
+
+
