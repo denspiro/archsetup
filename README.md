@@ -97,9 +97,11 @@ Read more [here](https://wiki.archlinux.org/index.php/Installation_guide#Network
 
 ### Boot loader
 Now `exit` and install `pacstrap /mnt grub efibootmgr`
+
+Login again `arch-chroot /mnt`
+and `grub-install --target=x86_64-efi --efi-directory=esp --bootloader-id=GRUB`
+
 (explain here what it's and why)
-
-
 
 
 
