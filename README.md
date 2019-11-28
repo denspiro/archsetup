@@ -46,7 +46,7 @@ Mounting is the attaching of an additional filesystem to the currently accessibl
 
 ## Installation 
 We have to install all the main stuff to make linux work.
-`pacstrap /mnt base linux linux-firmware netctl wpa_supplicant dhclient dialog ppp neovim redshift i3-wm scrot xorg-server xorg-xinit wget unzip`
+`pacstrap /mnt base linux linux-firmware netctl wpa_supplicant dhclient dialog ppp neovim redshift i3-wm scrot xorg-server xorg-xinit wget unzip terminus-font`
 (provide the links to each program description)
 
 ## Configuration
