@@ -106,7 +106,6 @@ and `grub-install --target=x86_64-efi --efi-directory=esp --bootloader-id=GRUB`
 (explain here what it's and why)
 
 `exit`, `reboot`
-(explain here what it's and why)
 
 
 
