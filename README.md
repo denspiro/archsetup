@@ -1,5 +1,5 @@
 # archsetup
-Description of all steps during Archlinux installation 
+Description of all steps during Archlinux installation. This is personal guide, I just documented all the steps that I did. It's lacking some details (maybe I will update it latter, maybe not). If you, for some reason, decided to follow it, it's up to you, but I personally will recommend you to follow https://wiki.archlinux.org/index.php/Installation_guide
 
 ## Increasing font in virtual console
 Since I have fhd screen all font are tiny so I had to make it bigger to read:
@@ -106,6 +106,3 @@ and `grub-install --target=x86_64-efi --efi-directory=esp --bootloader-id=GRUB`
 (explain here what it's and why)
 
 `exit`, `reboot`
-
-
-
