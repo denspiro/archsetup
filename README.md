@@ -1,4 +1,8 @@
 # archsetup
+
+On how to do the full encryption setup check here https://blog.bespinian.io/posts/installing-arch-linux-on-uefi-with-full-disk-encryption/
+But use GRUB like reccomended in Arch wiki.
+
 Description of all steps during Archlinux installation. This is personal guide, I just documented all the steps that I did. It's lacking some details (maybe I will update it latter, maybe not). If you, for some reason, decided to follow it, it's up to you, but I personally will recommend you to follow https://wiki.archlinux.org/index.php/Installation_guide
 
 ## Increasing font in virtual console
