@@ -110,3 +110,67 @@ and `grub-install --target=x86_64-efi --efi-directory=esp --bootloader-id=GRUB`
 (explain here what it's and why)
 
 `exit`, `reboot`
+
+### Setup hibernation with swap file
+Since I decided to use swap file, I will describe here steps how to setup hibernation with it. I primary interested in automatically enabling hibernation when I closing my laptop. Here is how to do it.
+
+Check if you have swapfile:
+`swapon --show`
+
+If output nothing it means no swap file exist. To know how big file should be you can consult [table here](https://wiki.manjaro.org/index.php/Swap)
+Let's create it (4GB in my case):
+`sudo fallocate -l 4G /swapfile`
+
+Give it needed permissions:
+`sudo chmod 600 /swapfile`
+
+Format file to swap:
+`sudo mkswap /swapfile`
+
+Activate it:
+`sudo swapon /swapfile`
+
+Check that you now have swap:
+`swapon --show`
+
+To ensure that the swap is enabled at boot add etry to `fstab`:
+`sudo bash -c "echo /swapfile none swap defaults 0 0 >> /etc/fstab"`
+
+Reboot and check that swap is active:
+`swapon --show`
+
+#### Configure the initramfs
+Now edit `/etc/mkinitcpio.conf` like this:
+`HOOKS=(base udev autodetect microcode kms modconf block keyboard keymap consolefont filesystems` *resume* `fsck)`
+
+Remember to regenerate the initramfs for these changes to take effect:
+`mkinitcpio -P`
+
+#### Acquire swap file offset
+When using a swap file for hibernation, the block device on which the file system lies should be specified in `resume=`, and additionally the physical offset of swap file must be specified through `resume_offset=<kernel parameter>`.
+
+The following command may be used to identify the backing device of the swap file:
+`findmnt -no UUID -T /swapfile`
+
+Get the offset:
+`filefrag -v /swapfile | awk '$1=="0:" {print substr($4, 1, length($4)-2)}'`
+
+Edit `/etc/default/grub` and append your kernel options between the quotes in the `GRUB_CMDLINE_LINUX_DEFAULT` line:
+`GRUB_CMDLINE_LINUX_DEFAULT="...  resume=UUID=1234dad7-fwe7-4as3-11da-ab47512a2123 resume_offset=15166490"`
+
+And then automatically re-generate the grub.cfg file with:
+`grub-mkconfig -o /boot/grub/grub.cfg`
+
+#### Time to hibernate
+I want my laptop to hibernate after 5 min when laptop is closed.
+
+In `/etc/systemd/logind.conf` uncomment and set:
+`HandleLidSwitch=suspend-then-hibernate`
+
+In `/etc/systemd/sleep.conf` uncomment and set:
+`HibernateDelaySec=5min`
+
+Then restart service:
+`systemctl restart systemd-logind`
+
+Reboot and check that all is working.
